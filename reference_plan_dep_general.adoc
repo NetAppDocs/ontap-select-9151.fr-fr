@@ -1,0 +1,133 @@
+---
+sidebar: sidebar 
+permalink: reference_plan_dep_general.html 
+keywords: plan, planning, ontap select deploy, general requirements 
+summary: 'Dans le cadre de la planification de l"installation de l"utilitaire d"administration ONTAP Select Deploy, vous devez tenir compte de plusieurs exigences générales.' 
+---
+= ONTAP Select déploie exigences générales et planification
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Dans le cadre de la planification de l'installation de l'utilitaire d'administration ONTAP Select Deploy, vous devez tenir compte de plusieurs exigences générales.
+
+
+
+== Association de l'utilitaire de déploiement avec les clusters ONTAP Select
+
+Vous disposez de plusieurs options lors du couplage d'une instance de l'utilitaire de déploiement avec les clusters ONTAP Select.
+
+
+NOTE: Dans tous les scénarios de déploiement, un cluster ONTAP Select unique et les nœuds du cluster ne peuvent être gérés que par une seule instance de l'utilitaire d'administration Deploy. Un cluster ne peut pas être géré par au moins deux instances différentes de l'utilitaire de déploiement.
+
+.Une instance de l'utilitaire pour chaque cluster ONTAP Select
+Vous pouvez déployer et gérer chaque cluster ONTAP Select à l'aide d'une instance dédiée de l'utilitaire de déploiement. Cette configuration un-à-un sépare clairement chacune des paires utilitaire-cluster. Cette configuration offre un niveau d'isolation élevé avec des domaines de défaillance plus petits.
+
+.Une instance de l'utilitaire pour plusieurs clusters ONTAP Select
+Vous pouvez déployer et gérer plusieurs clusters ONTAP Select dans votre entreprise à l'aide d'une instance unique de l'utilitaire de déploiement. Avec cette configuration un-à-plusieurs, toutes les données de traitement et de configuration sont gérées par la même instance de l'utilitaire de déploiement.
+
+
+NOTE: Une instance de l'utilitaire de déploiement peut administrer jusqu'à 400 nœuds ONTAP Select ou 100 clusters.
+
+
+
+== Configuration requise pour l'environnement KVM
+
+Avant d'installer l'utilitaire d'administration de déploiement dans un environnement d'hyperviseur KVM, vous devez vérifier les exigences de base et vous préparer au déploiement.
+
+.Configuration requise et restrictions pour un déploiement
+Plusieurs exigences et restrictions doivent être prises en compte lors de l'installation de l'utilitaire ONTAP Select Deploy dans un environnement KVM.
+
+.Configuration matérielle requise pour le serveur hôte Linux KVM
+Votre hôte d'hyperviseur Linux KVM doit satisfaire à plusieurs exigences minimales en termes de ressources. Vérifier que les hôtes sur lesquels ONTAP Select est déployé répondent aux exigences de base suivantes :
+
+* Serveur Linux :
++
+** Le matériel et le logiciel doivent être 64 bits
+** Le serveur doit respecter les mêmes versions prises en charge que celles définies pour un nœud ONTAP Select
+
+
+* Processeurs virtuels (2)
+* Mémoire virtuelle (4 Go)
+* Stockage (40 Go)
+* « Le protocole DHCP (Dynamic Host Configuration Protocol) est activé (vous pouvez également attribuer une adresse IP statique)
+
+
+.Connectivité réseau
+Vérifiez que l'interface réseau de la machine virtuelle de déploiement est configurée et qu'elle peut se connecter aux hôtes ONTAP Select qu'elle gère.
+
+.Prise en charge de IP version 4
+Le déploiement de ONTAP Select prend uniquement en charge IP version 4 (IPv4). La version IP 6 (IPv6) n'est pas prise en charge. Cette restriction affecte ONTAP Select de l'une des manières suivantes :
+
+* Vous devez attribuer une adresse IPv4 à la LIF de gestion de la machine virtuelle de déploiement.
+* Le déploiement ne peut pas créer de nœuds ONTAP Select configurés pour utiliser IPv6 sur les LIF ONTAP.
+
+
+
+
+== Informations de configuration requises
+
+Dans le cadre de la planification de votre déploiement, vous devez déterminer les informations de configuration requises avant d'installer l'utilitaire d'administration ONTAP Select Deploy.
+
+.Nom de la machine virtuelle de déploiement
+Nom à utiliser pour la machine virtuelle.
+
+.Nom de l'hôte Linux KVM
+Hôte Linux KVM sur lequel l'utilitaire de déploiement est installé.
+
+.Nom du pool de stockage
+Pool de stockage contenant les fichiers de la machine virtuelle (environ 40 Go sont requis).
+
+.Réseau pour la machine virtuelle
+Réseau auquel la VM de déploiement est connectée.
+
+
+
+== Informations optionnelles sur la configuration du réseau
+
+Par défaut, la machine virtuelle de déploiement est configurée à l'aide du protocole DHCP. Toutefois, si nécessaire, vous pouvez configurer manuellement l'interface réseau de la machine virtuelle.
+
+.Nom d'hôte
+Nom de l'hôte.
+
+.Adresse IP de l'hôte
+Adresse IPv4 statique.
+
+.Masque de sous-réseau
+Masque de sous-réseau, basé sur le réseau auquel la machine virtuelle fait partie.
+
+.Passerelle
+La passerelle ou le routeur par défaut.
+
+.Serveur DNS principal
+Le serveur de nom de domaine principal.
+
+.Serveur DNS secondaire
+Le serveur de nom de domaine secondaire.
+
+.Domaines de recherche
+Domaines de recherche à utiliser.
+
+
+
+== Authentification à l'aide du magasin d'informations d'identification
+
+Le magasin d'informations d'identification de ONTAP Select Deploy est une base de données contenant les informations de compte. Le déploiement utilise les identifiants de compte pour effectuer l'authentification hôte dans le cadre de la création et de la gestion du cluster. Vous devez savoir comment le magasin d'informations d'identification est utilisé dans le cadre de la planification d'un déploiement ONTAP Select.
+
+
+NOTE: Les informations de compte sont stockées en toute sécurité dans la base de données à l'aide de l'algorithme de cryptage AES et de l'algorithme de hachage SHA-256.
+
+.Types d'informations d'identification
+Les types d'informations d'identification suivants sont pris en charge :
+
+* Hôte utilisé pour authentifier un hôte d'hyperviseur dans le cadre du déploiement d'un nœud ONTAP Select directement dans VMware ESXi
+* VCenter utilisé pour authentifier un serveur vCenter dans le cadre du déploiement d'un nœud ONTAP Select vers ESXi lorsque l'hôte est géré par VMware vCenter
+
+
+.L'accès
+Le magasin d'informations d'identification est accessible en interne dans le cadre de l'exécution de tâches administratives normales à l'aide de Deploy, telles que l'ajout d'un hôte d'hyperviseur. Vous pouvez également gérer le magasin d'informations d'identification directement via l'interface utilisateur Web de déploiement et l'interface de ligne de commande.
