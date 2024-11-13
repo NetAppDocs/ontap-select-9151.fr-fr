@@ -42,6 +42,7 @@ ONTAP Select peut être déployé sur les hyperviseurs suivants :
 * VMware ESXi 7.0 GA (build 15843807 ou supérieur), y compris 7.0 U1, U2 et U3C
 * VMware ESXi 8.0 GA (build 20513097)
 * VMware ESXi 8.0 U1 (build 21495797)
+* VMware ESXi 8.0 U3 (disponible pour ONTAP 9.15.1P4 ou toute version de correctif disponible ultérieure)
 
 
 
