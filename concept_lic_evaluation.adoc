@@ -16,6 +16,15 @@ summary: 'Vous pouvez utiliser une licence d"évaluation si vous souhaitez éval
 [role="lead"]
 Vous pouvez utiliser une licence d'évaluation si vous souhaitez évaluer ONTAP Select avant de prendre la décision d'achat. La licence d'évaluation est incluse à l'utilitaire d'administration ONTAP Select Deploy et s'applique automatiquement à chaque nœud ONTAP Select dans le cadre d'un déploiement d'évaluation.
 
+[NOTE]
+====
+Pour télécharger l'utilitaire d'administration de ONTAP Select Deploy, vous avez besoin des éléments suivants :
+
+* Un compte enregistré sur le site de support NetApp. Si vous n'avez pas de compte, reportez-vous àla section https://mysupport.netapp.com/site/user/registration["Enregistrement de l'utilisateur"^].
+* Pour https://mysupport.netapp.com/site/downloads/evaluation/ontap-select["Acceptez le contrat de licence de l'utilisateur final"^] un déploiement ONTAP Select avec une licence d'évaluation.
+
+
+====
 
 
 == Caractéristiques des licences
