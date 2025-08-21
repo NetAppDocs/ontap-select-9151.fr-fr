@@ -52,3 +52,7 @@ Vous pouvez mettre à niveau un cluster d'évaluation ONTAP Select de manière �
 
 
 Voir link:task_adm_licenses.html["Convertir une licence d'évaluation en licence de production"] pour plus d'informations.
+
+.Informations associées
+* link:concept_lic_production.html["En savoir plus sur les licences pour les déploiements de production"]
+
