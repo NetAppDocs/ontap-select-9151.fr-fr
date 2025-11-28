@@ -97,6 +97,7 @@ ONTAP Select ne prend pas en charge plusieurs fonctionnalités ONTAP. Dans la pl
 * Les processeurs de service
 * Migration de SVM
 * Conformité SnapLock
+* Synchronisation active de SnapMirror
 * VMware HCX
 
 
